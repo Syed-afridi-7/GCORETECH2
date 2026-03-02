@@ -35,8 +35,8 @@ const Navbar = () => {
             alt="NWR India Logo"
             className="h-14 w-auto object-contain rounded-sm transition-transform duration-300 group-hover:scale-105"
           />
-          <span className="font-bold text-lg tracking-tight hidden sm:block text-foreground">
-            NWR <span className="text-violet-500 font-extrabold">India</span>
+          <span className="font-bold text-lg tracking-tight hidden sm:block text-red-800">
+            NWR <span className="text-red-700 font-extrabold">India</span>
           </span>
         </a>
 
