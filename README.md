@@ -12,6 +12,7 @@ Welcome to the GCORETECH2 web application repository. This project is built usin
 
 ## 📦 Getting Started
 
+
 ### Prerequisites
 
 - Node.js (v18 or higher recommended)
@@ -59,5 +60,3 @@ The application will be available at `http://localhost:8080` (or the port specif
 ## 📝 License
 
 This project is proprietary and confidential. © 2026 Your Company Name. All rights reserved.
-# GCORETECH2
-# GCORETECH2

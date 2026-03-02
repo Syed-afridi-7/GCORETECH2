@@ -1,61 +1,103 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import logo from "@/assets/ypl-logo.png";
+import logoSvg from "@/assets/logo.png";
 
-const navLinks = ["Home", "About Us", "Blogs", "Contact"];
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Events", href: "#events" },
+  { label: "Register", href: "#register" },
+  { label: "Contact", href: "#contact" },
+];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center gap-2">
-          <img src={logo} alt="YPL Logo" className="h-10 w-10 object-contain" />
-          <span className="font-display font-bold text-lg text-foreground hidden sm:block">YPL</span>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-white/90 dark:bg-[#0a0d1a]/90 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-border"
+        : "bg-transparent"
+        }`}
+    >
+      <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-6">
+        {/* Logo */}
+        <a href="#home" className="flex items-center gap-2.5 group">
+          <img
+            src={logoSvg}
+            alt="NWR India Logo"
+            className="h-14 w-auto object-contain rounded-sm transition-transform duration-300 group-hover:scale-105"
+          />
+          <span className="font-bold text-lg tracking-tight hidden sm:block text-foreground">
+            NWR <span className="text-violet-500 font-extrabold">India</span>
+          </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              key={link.label}
+              href={link.href}
+              className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200"
             >
-              {link}
+              {link.label}
             </a>
           ))}
-          <Button className="bg-gradient-gold text-secondary font-semibold shadow-gold gap-2">
-            <Download className="w-4 h-4" />
-            Download
-          </Button>
         </div>
 
+        {/* CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="/CERTIFICATE_Final.pdf"
+            download="CERTIFICATE_Final.pdf"
+            className="flex items-center gap-2 btn-primary-glow text-white text-sm"
+          >
+            <Download className="w-4 h-4" />
+            Download
+          </a>
+        </div>
+
+        {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground"
-          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 rounded-lg text-foreground hover:bg-muted/50 transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-background border-b border-border px-4 pb-4 space-y-3">
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-border bg-white/95 dark:bg-[#0a0d1a]/95 backdrop-blur-xl px-4 py-4 space-y-1">
           {navLinks.map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="block text-sm font-medium text-muted-foreground hover:text-primary py-2"
-              onClick={() => setIsOpen(false)}
+              key={link.label}
+              href={link.href}
+              className="block px-4 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
+              onClick={() => setMobileOpen(false)}
             >
-              {link}
+              {link.label}
             </a>
           ))}
-          <Button className="w-full bg-gradient-gold text-secondary font-semibold shadow-gold gap-2">
-            <Download className="w-4 h-4" />
-            Download
-          </Button>
+          <div className="pt-2">
+            <a
+              href="/CERTIFICATE_Final.pdf"
+              download="CERTIFICATE_Final.pdf"
+              className="flex items-center justify-center gap-2 btn-primary-glow text-white text-sm w-full"
+            >
+              <Download className="w-4 h-4" />
+              Download Certificate
+            </a>
+          </div>
         </div>
       )}
     </nav>

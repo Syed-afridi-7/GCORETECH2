@@ -1,27 +1,35 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import RegistrationSection from "@/components/RegistrationSection";
+
 import AboutSection from "@/components/AboutSection";
-import StatsSection from "@/components/StatsSection";
-import OverviewSection from "@/components/OverviewSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CommunitySection from "@/components/CommunitySection";
+import EventsSection from "@/components/EventsSection";
+import GallerySection from "@/components/GallerySection";
 import ContactSection from "@/components/ContactSection";
 import BlogsSection from "@/components/BlogsSection";
-import Footer from "@/components/Footer";
+import FooterSection from "@/components/FooterSection";
+import SalemYogasanaSection from "@/components/SalemYogasanaSection";
+import ShadowPhoenixSection from "@/components/ShadowPhoenixSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
+      <RegistrationSection />
+
       <AboutSection />
-      <StatsSection />
-      <OverviewSection />
+      <SalemYogasanaSection />
       <TestimonialsSection />
       <CommunitySection />
-      <BlogsSection />
+      <EventsSection />
+      <ShadowPhoenixSection />
+      <GallerySection />
       <ContactSection />
-      <Footer />
+      <BlogsSection />
+      <FooterSection />
     </div>
   );
 };

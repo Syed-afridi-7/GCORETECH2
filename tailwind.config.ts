@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['Playfair Display', 'serif'],
+        body: ['DM Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,19 +51,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-          glow: "hsl(var(--gold-glow))",
-        },
-        navy: {
-          DEFAULT: "hsl(var(--navy))",
-          deep: "hsl(var(--navy-deep))",
-        },
-        cream: {
-          DEFAULT: "hsl(var(--cream))",
-          dark: "hsl(var(--cream-dark))",
-        },
+        gold: "hsl(var(--gold))",
+        "gold-foreground": "hsl(var(--gold-foreground))",
+        "pink-light": "hsl(var(--pink-light))",
+        "pink-medium": "hsl(var(--pink-medium))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -89,20 +80,20 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "count-up": {
-          from: { opacity: "0", transform: "translateY(10px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "fade-in": {
-          from: { opacity: "0", transform: "translateY(20px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        "scroll-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "count-up": "count-up 0.6s ease-out forwards",
-        "fade-in": "fade-in 0.6s ease-out forwards",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "scroll-left": "scroll-left 30s linear infinite",
       },
     },
   },

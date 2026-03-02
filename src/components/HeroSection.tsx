@@ -1,48 +1,103 @@
 import { motion } from "framer-motion";
-import heroImg from "@/assets/hero-bg.jpg";
+import { ArrowRight, Trophy, Shield, Star } from "lucide-react";
+
+const badges = [
+  { icon: Trophy, label: "World Records" },
+  { icon: Star, label: "Yoga Sports" },
+];
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-background">
-      {/* Decorative swirl */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <svg viewBox="0 0 1000 600" className="w-full h-full" preserveAspectRatio="none">
-          <path d="M0,300 Q250,100 500,300 T1000,300" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary" />
-          <path d="M0,350 Q250,150 500,350 T1000,350" fill="none" stroke="currentColor" strokeWidth="1" className="text-primary" />
-        </svg>
+    <section
+      id="home"
+      className="hero-gradient min-h-screen flex items-center relative overflow-hidden"
+    >
+      {/* Animated background orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-violet-600/20 blur-3xl animate-float pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-indigo-500/15 blur-3xl animate-float pointer-events-none" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-900/10 blur-3xl pointer-events-none" />
+
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: `linear-gradient(rgba(139,92,246,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.1) 1px, transparent 1px)`,
+          backgroundSize: "64px 64px",
+        }}
+      />
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 pb-16">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-amber-400/15 px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              Noble World Records
+            </span>
+          </motion.div>
+
+
+
+          {/* Sub-heading */}
+          <motion.p
+            className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Shaping confident, capable, and empowered youth through world-class
+            events, discipline, and the celebration of extraordinary human potential.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <a
+              href="#register"
+              className="btn-primary-glow flex items-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-xl"
+            >
+              Register Now
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="#events"
+              className="flex items-center gap-2 rounded-xl border border-slate-600 bg-white/5 backdrop-blur-sm px-8 py-4 text-sm font-semibold text-slate-200 hover:bg-white/10 hover:border-slate-400 transition-all duration-300"
+            >
+              View Events
+            </a>
+          </motion.div>
+
+          {/* Feature badges */}
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            {badges.map(({ icon: Icon, label }, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-5 py-2.5 text-sm text-slate-300 backdrop-blur-sm"
+              >
+                <Icon className="w-4 h-4 text-violet-400" />
+                {label}
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="inline-block border border-primary/30 rounded-full px-5 py-1.5 text-sm font-medium text-primary mb-6">
-            Yogasana Premier League
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight">
-            YPL: Where Yoga Becomes a{" "}
-            <span className="text-gradient-gold">World-Class</span>{" "}
-            Competitive Sport
-          </h1>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
-          <div className="rounded-2xl overflow-hidden shadow-gold">
-            <img
-              src={heroImg}
-              alt="Yogasana Premier League - 8 Top Teams Faceoff"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-        </motion.div>
-      </div>
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 };

@@ -1,39 +1,27 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "65+", label: "Registered Institutes" },
-  { value: "150+", label: "Coaches Onboard" },
-  { value: "200+", label: "Certified Officials / Referees" },
-  { value: "5000+", label: "Registered Players" },
+  { number: "65", label: "Awards Won" },
+  { number: "65", label: "Awards Won" },
+  { number: "65", label: "Awards Won" },
 ];
 
 const StatsSection = () => {
   return (
-    <section className="bg-gradient-navy py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl sm:text-4xl font-display font-bold text-center text-cream mb-12"
-        >
-          Our Achievements
-        </motion.h2>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="py-12 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, i) => (
             <motion.div
-              key={stat.label}
+              key={i}
+              className="bg-card border border-border rounded-xl p-8 text-center shadow-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="text-center"
+              transition={{ delay: i * 0.1 }}
             >
-              <div className="text-4xl sm:text-5xl font-display font-bold text-gradient-gold mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-cream/70 font-medium">{stat.label}</div>
+              <h3 className="font-display text-5xl font-bold text-primary mb-2">{stat.number}</h3>
+              <p className="text-muted-foreground font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </div>
